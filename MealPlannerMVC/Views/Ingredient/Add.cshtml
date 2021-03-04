@@ -1,0 +1,57 @@
+﻿@model Ingredient
+<div class="row">
+	<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-fw fa-wrench"></i>
+			Ingredient
+			<span>
+				>
+				Add
+			</span>
+		</h1>
+	</div>
+</div>
+<vc:summary />
+<section id="widget-grid" class="wi">
+	<div class="row">
+		<article class="col-sm-12 col-md-12 col-lg-12">
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget jarviswidget-color-blueDark" id="ingredient-add" data-widget-deletebutton="false">
+				<header>
+					<span class="widget-icon"> <i class="fa fa-plus"></i> </span>
+					<h2>Add Ingredient</h2>
+				</header>
+				<div>
+					<div class="jarviswidget-editbox">
+					</div>
+					<div class="widget-body no-padding">
+						<form id="ingredient-add-form" asp-action="add">
+							<fieldset>
+								@await Html.PartialAsync("_FormFields", Model)
+							</fieldset>
+							<footer>
+								<button type="submit" class="btn btn-success">
+									<i class="fa fa-check"></i> Save
+								</button>
+
+								<a asp-action="Index" asp-controller="Ingredient" class="btn btn-info">
+									<i class="fa fa-arrow-left"></i> Back to List
+								</a>
+							</footer>
+						</form>
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+</section>
+<script type="text/javascript">
+	$(document).ready(function () {
+		new Ingredient.Add({
+			context: '#widget-grid',
+			formElement: '#ingredient-add-form'
+		});
+	});
+</script>
+
+

@@ -1,0 +1,73 @@
+﻿@model PlanViewModel
+@inject ISelectListHelper SelectListHelper
+
+<form asp-action="Index" method="post">
+	<select asp-for="@Model.Day1Meal1" asp-items="@(new SelectList(Model.Meals, "Id", "Name"))">
+		<option value="">Pick one</option>
+	</select>
+	<select asp-for="@Model.Day1Meal2" asp-items="@(new SelectList(Model.Meals, "Id", "Name"))">
+		<option value="">Pick one</option>
+	</select>
+	<button type="submit" class="btn btn-success">Create Shoping List</button>
+
+</form>
+<table id="dt-mealingedient-list" class="table table-striped table-bordered table-hover" data-page-length="25" width="100%">
+	<thead>
+		<tr>
+			<th data-hide="phone">Yasmin</th>
+			<th data-hide="phone">Batch</th>
+			<th data-hide="phone">Cathal</th>
+			<th data-hide="phone">Batch</th>
+			<th data-hide="phone">Kids</th>
+			<th data-hide="phone">Batch</th>
+			<th data-hide="phone"></th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (int i = 0; i < 30; i++)
+		{
+
+			<tr data-row-id="@i">
+				<td>
+					<select class="form-control" asp-for="@Model.Day1Meal1" asp-items="SelectListHelper.ListMealsForYasmin()">
+						<option value="0">Select</option>
+					</select>
+				</td>
+				<td>
+					<select asp-for="@Model.Day1Meal1">
+						<option value="1">1</option>
+						<option value="1">2</option>
+						<option value="1">3</option>
+						<option value="1">4</option>
+						<option value="1">5</option>
+					</select>
+				</td>
+				<td>
+					<select class="form-control" asp-for="@Model.Day1Meal1" asp-items="SelectListHelper.ListMealsForCathal()">
+						<option value="0">Select</option>
+					</select>
+				</td>
+				<td>
+					<select asp-for="@Model.Day1Meal1">
+						<option value="1">1</option>
+						<option value="1">2</option>
+						<option value="1">3</option>
+						<option value="1">4</option>
+						<option value="1">5</option>
+					</select>
+				</td>
+				<td>N/A</td>
+				<td>N/A</td>
+				<td>&nbsp;</td>
+			</tr>
+			@if (i % 3 == 0)
+			{
+				<tr>
+					<td>
+						<hr />
+					</td>
+				</tr>
+			}
+		}
+	</tbody>
+</table>
