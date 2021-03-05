@@ -23,6 +23,11 @@ namespace MealPlannerMVC.Repositories
 			return entityAdded.Entity.Id;
 		}
 
+		public Ingredient GetIngredient(int id)
+		{
+			return _appDbContext.Ingredients.Where(x=>x.Id == id).FirstOrDefault();
+		}
+
 		public IEnumerable<Ingredient> GetIngredients()
 		{
 			return _appDbContext.Ingredients.ToList();
