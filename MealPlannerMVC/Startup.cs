@@ -65,6 +65,17 @@ namespace MealPlannerMVC
 					name: "default",
 					pattern: "{controller=Meal}/{action=Index}/{id?}");
 			});
+
+			ApplyMigrations(app, env);
+		}
+
+		private void ApplyMigrations(IApplicationBuilder app, IWebHostEnvironment env)
+		{
+			using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+			{
+				var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+				context.Database.Migrate();
+			}
 		}
 	}
 }
