@@ -13,23 +13,24 @@
         <label class="input">
             <select class="form-control" asp-for="Who" asp-items="Html.GetEnumSelectList<Who>()">
             </select>
-            @*<select class="form-control" asp-for="Item.Id">
-                    <option value="0">Select</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                </select>*@
         </label>
         <span asp-validation-for="Who"></span>
     </div>
+</div>
+<div class="row">
     <div class="col col-6">
         <label class="label">Type</label>
         <label class="input">
-            <select class="form-control" asp-for="Type">
-                <option value="0">Select</option>
-                <option value="1">General</option>
-                <option value="2">Refuel</option>
+            <select class="form-control" asp-for="MealType" asp-items="Html.GetEnumSelectList<MealType>()">
             </select>
         </label>
-        <span asp-validation-for="Type"></span>
+        <span asp-validation-for="MealType"></span>
+    </div>
+    <div class="col col-6">
+        <label class="label">Enabled</label>
+        <label class="input">
+            <input class="form-control" asp-for="IsEnabled" type="checkbox" />
+        </label>
+        <span asp-validation-for="IsEnabled"></span>
     </div>
 </div>
