@@ -1,6 +1,7 @@
 ﻿using MealPlannerMVC.Models;
 using MealPlannerMVC.Repositories;
 using MealPlannerMVC.Services;
+using MealPlannerMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,18 @@ namespace MealPlannerMVC.Controllers
 		public IActionResult Index()
 		{
 			var model = _mealRepository.GetMeals();
-			return View(model);
+			var ViewModelList = new List<MealViewModel>();
+			foreach (var meal in model)
+			{
+				var viewModel = new MealViewModel();
+				viewModel.Id = meal.Id;
+				viewModel.MealType = meal.MealType;
+				viewModel.Name = meal.Name;
+				viewModel.Who = meal.Who;
+				viewModel.IsEnabled = meal.IsEnabled;
+				ViewModelList.Add(viewModel);
+			}
+			return View(ViewModelList);
 		}
 		public IActionResult Add()
 		{

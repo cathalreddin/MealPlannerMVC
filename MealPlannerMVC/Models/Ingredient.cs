@@ -12,7 +12,7 @@ namespace MealPlannerMVC.Models
 			MealIngredients = new List<MealIngredient>();
 		}
 		public int Id { get; set; }
-		public double Measure { get; set; }
+		public double? Measure { get; set; }
 		public string Unit { get; set; }
 		public List<MealIngredient> MealIngredients { get; set; }
 

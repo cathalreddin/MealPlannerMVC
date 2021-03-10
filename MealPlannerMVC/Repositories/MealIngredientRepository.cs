@@ -44,6 +44,14 @@ namespace MealPlannerMVC.Repositories
 			return mealIngredients;
 		}
 
+		public MealIngredient GetMealFromIngredient(int IngredientId)
+		{
+			var mealIngredient = _appDbContext.MealIngredients
+				.Where(x => x.IngredientId == IngredientId)
+				.FirstOrDefault();
+			return mealIngredient;
+		}
+
 		public IEnumerable<MealIngredient> GetMealIngredients()
 		{
 			return _appDbContext.MealIngredients.ToList();

@@ -13,5 +13,7 @@ namespace MealPlannerMVC.Repositories
 		MealIngredient GetIngredientForMeal(int MealId, int IngredientId);
 		void Add(MealIngredient mealIngredient);
 		void Delete(MealIngredient mealIngredient);
+		MealIngredient GetMealFromIngredient(int  IngredientId);
+		
 	}
 }

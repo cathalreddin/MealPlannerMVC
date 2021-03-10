@@ -40,6 +40,7 @@ namespace MealPlannerMVC.Repositories
 		{
 			return _appDbContext.Meals.Where(x => x.Id == Id)
 				.Include(x=>x.MealIngredients)
+				.ThenInclude(y=>y.Ingredient)
 				.FirstOrDefault();
 		}
 

@@ -33,13 +33,21 @@ namespace MealPlannerMVC.Repositories
 
         public Ingredient GetIngredient(int id)
 		{
-			return _appDbContext.Ingredients.Where(x=>x.Id == id).FirstOrDefault();
+			return _appDbContext.Ingredients
+				.Where(x=>x.Id == id)
+				.Include(y=>y.Item)
+				.FirstOrDefault();
 		}
 
 		public IEnumerable<Ingredient> GetIngredients()
 		{
 			return _appDbContext.Ingredients.ToList();
 		}
-				
+		public void Delete(Ingredient ingredient)
+		{
+			_appDbContext.Remove(ingredient);
+			_appDbContext.SaveChanges();
+		}
+
 	}
 }
