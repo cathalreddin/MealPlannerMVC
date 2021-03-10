@@ -1,6 +1,7 @@
 using MealPlannerMVC.Helper;
 using MealPlannerMVC.Models;
 using MealPlannerMVC.Repositories;
+using MealPlannerMVC.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,7 @@ namespace MealPlannerMVC
 			services.AddScoped<IMealIngredientRepository, MealIngredientRepository>();
 			services.AddScoped<IItemRepository, ItemRepository>();
 			services.AddScoped<ISelectListHelper, SelectListHelper>();
+			services.AddScoped<IMealService, MealService>();
 
 			services.AddDbContext<AppDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

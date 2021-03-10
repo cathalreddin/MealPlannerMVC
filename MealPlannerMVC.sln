@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealPlannerMVC", "MealPlannerMVC\MealPlannerMVC.csproj", "{4F2558E2-1095-4102-9A87-42E2BE95F41B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MealPlannerMVC", "MealPlannerMVC\MealPlannerMVC.csproj", "{4F2558E2-1095-4102-9A87-42E2BE95F41B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealPlanner.Test", "MealPlanner.Test\MealPlanner.Test.csproj", "{F7D40C59-EEE4-46D4-A784-2B109790C994}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4F2558E2-1095-4102-9A87-42E2BE95F41B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F2558E2-1095-4102-9A87-42E2BE95F41B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F2558E2-1095-4102-9A87-42E2BE95F41B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7D40C59-EEE4-46D4-A784-2B109790C994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7D40C59-EEE4-46D4-A784-2B109790C994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7D40C59-EEE4-46D4-A784-2B109790C994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7D40C59-EEE4-46D4-A784-2B109790C994}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

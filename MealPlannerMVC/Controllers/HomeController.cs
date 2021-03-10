@@ -98,19 +98,23 @@ namespace MealPlannerMVC.Controllers
 			foreach (var meal in mealPlan)
 			{
 				var thisMeal = _mealIngredientsRepository.GetIngredientsForMeal(meal.Key);
-				foreach (var item in thisMeal)
+				foreach (var ingredients in thisMeal)
 				{
-					var ingredient = _ingredientsRepository.GetIngredient(item.IngredientId);
-					ingredient.Measure *= meal.Value;
-					if (shoppingList.Where(x => x.ItemId == ingredient.ItemId).Any())
-					{
-						var x = shoppingList.Where(x => x.ItemId == ingredient.ItemId).FirstOrDefault();
-						x.Measure += ingredient.Measure;
-					}
-					else
-					{
+					var ingredient = _ingredientsRepository.GetIngredient(ingredients.IngredientId);
+					var newMeasure = ingredient.Measure * meal.Value;
+					//if (shoppingList.Contains(ingredient))
+					//if (shoppingList.Any(x => x.ItemId == ingredient.ItemId))
+					//{
+					//	//shoppingList.
+					//	var x = shoppingList.Where(x => x.ItemId == ingredient.ItemId).FirstOrDefault();
+					//	x.Measure += newMeasure;
+					//}
+					//else
+					//{
+						ingredient.Measure = newMeasure;
 						shoppingList.Add(ingredient);
-					}
+					ingredient = null;
+					//}
 				}
 			}
 			model.ShoppingList = shoppingList;
