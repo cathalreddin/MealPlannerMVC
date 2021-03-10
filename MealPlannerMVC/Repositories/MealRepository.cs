@@ -1,4 +1,5 @@
 ﻿using MealPlannerMVC.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +16,31 @@ namespace MealPlannerMVC.Repositories
 			_appDbContext = appDbContext;
 		}
 
-		public void Add(Meal meal)
+		public int Add(Meal meal)
 		{
-			_appDbContext.Add(meal);
+			_appDbContext.Add(meal); 
+			Commit();
+			var id = meal.Id;
+			return id;
+		}
+
+        public int Edit(Meal meal)
+        {
+			_appDbContext.Update(meal);
+			Commit();
+			var id = meal.Id;
+			return id;
+		}
+		public void Commit()
+        {
 			_appDbContext.SaveChanges();
 		}
 
-		public Meal GetMeal(int Id)
+        public Meal GetMeal(int Id)
 		{
-			return _appDbContext.Meals.Where(x => x.Id == Id).FirstOrDefault();
+			return _appDbContext.Meals.Where(x => x.Id == Id)
+				.Include(x=>x.MealIngredients)
+				.FirstOrDefault();
 		}
 
 		public IEnumerable<Meal> GetMeals()

@@ -31,7 +31,7 @@ namespace MealPlannerMVC.Helper
 		public IEnumerable<SelectListItem> ListMealsForCathal()
 		{
 			return (from p in _mealRepository.GetMeals()
-					where p.Who == Models.Who.Cathal
+					where p.Who == Models.Who.Cathal && p.IsEnabled
 					orderby p.Name
 					select new SelectListItem()
 					{
@@ -43,7 +43,7 @@ namespace MealPlannerMVC.Helper
 		public IEnumerable<SelectListItem> ListMealsForYasmin()
 		{
 			return (from p in _mealRepository.GetMeals()
-					where p.Who == Models.Who.Yasmin
+					where p.Who == Models.Who.Yasmin && p.IsEnabled
 					orderby p.Name
 					select new SelectListItem()
 					{

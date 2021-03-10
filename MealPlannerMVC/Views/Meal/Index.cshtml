@@ -31,39 +31,51 @@
 					<div class="widget-body no-padding">
 						<table id="dt-meal-list" class="table table-striped table-bordered table-hover" data-page-length="25" width="100%">
 							<thead>
-								<tr>
-									<th data-hide="phone">Id</th>
-									<th data-hide="phone">Name</th>
-									<th data-hide="phone">Who</th>
-									<th data-hide="phone">Type</th>
-									<th data-hide="phone,tablet" class="no-sort">Update</th>
-									<th data-hide="phone,tablet" class="no-sort">Delete</th>
-								</tr>
+                                <tr>
+                                    <th data-hide="phone">Id</th>
+                                    <th data-hide="phone">Name</th>
+                                    <th data-hide="phone">Who</th>
+                                    <th data-hide="phone">Type</th>
+                                    <th data-hide="phone">Enabled</th>
+                                    <th data-hide="phone,tablet" class="no-sort">Ingredients</th>
+                                    <th data-hide="phone,tablet" class="no-sort">Edit</th>
+                                    <th data-hide="phone,tablet" class="no-sort">Copy</th>
+                                </tr>
 							</thead>
 							<tbody>
 								@foreach (var item in Model)
 								{
-								<tr data-row-id="@item.Id">
-									<td>@Html.DisplayFor(modelItem => item.Id)</td>
-									<td>@Html.DisplayFor(modelItem => item.Name)</td>
-									<td>@Html.DisplayFor(modelItem => item.Who)</td>
-									<td>@Html.DisplayFor(modelItem => item.Type)</td>
-									<td class="actions-column">
-										<div class="btn-group ">											
-											<a asp-action="index" asp-controller="MealIngredient" asp-route-id="@item.Id" class="btn btn-xs btn-primary">
-												<i class="fa fa-search"></i> <span class="">Details</span>
-											</a>
-										</div>
-									</td>
-									<td class="actions-column">
-										@*<form class="form-btn padding-left-10" asp-action="delete" asp-route-id="@item.Id">
-				<button class="btn btn-xs btn-danger" data-action="delete" data-item-id="@item.Id" data-related-dt="#dt-item-list">
-					<i class="fa fa-times"></i>
-					<span class="">Delete</span>
-				</button>
-			</form>*@
-									</td>
-								</tr>
+                                <tr data-row-id="@item.Id">
+                                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Who)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.MealType)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.IsEnabled)</td>
+                                    <td class="actions-column">
+                                        <div class="btn-group ">
+                                            <a asp-action="index" asp-controller="MealIngredient" asp-route-id="@item.Id" class="btn btn-xs btn-primary">
+                                                <i class="fa fa-search"></i> <span class="">Ingredients</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="btn-group ">
+                                            <a asp-action="edit" asp-controller="Meal" asp-route-id="@item.Id" class="btn btn-xs btn-primary">
+                                                <i class="fa fa-wrench"></i> <span class="">Edit</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    @if (item.IsEnabled)
+                                    {
+                                        <td class="actions-column">
+                                            <div class="btn-group ">
+                                                <a asp-action="copy" asp-controller="Meal" asp-route-id="@item.Id" class="btn btn-xs btn-primary">
+                                                    <i class="fa fa-wrench"></i> <span class="">Copy</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    }
+                                </tr>
 								}
 							</tbody>
 						</table>

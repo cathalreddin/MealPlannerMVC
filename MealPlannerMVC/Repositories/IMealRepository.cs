@@ -9,7 +9,9 @@ namespace MealPlannerMVC.Repositories
 	public interface IMealRepository
 	{
 		IEnumerable<Meal> GetMeals();
-		void Add(Meal item);
+		int Add(Meal meal);
+		int Edit(Meal meal);
 		Meal GetMeal(int Id);
+
 	}
 }
