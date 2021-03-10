@@ -14,20 +14,18 @@ namespace MealPlannerMVC.Models
 		}
 		public int Id { get; set; }
 		public string Name { get; set; }
-		public MealType MealType { get; set; }
+		public Type Type { get; set; }
 		public Who Who { get; set; }
 		public List<MealIngredient> MealIngredients { get; set; }
 		public List<MealDay> MealDays { get; set; }
-        public bool IsEnabled { get; set; }
-
-    }
+	}
 	public enum Who
 	{
 		Cathal,
 		Yasmin,
 		Kids
 	}
-	public enum MealType
+	public enum Type
 	{
 		General,
 		Refuel

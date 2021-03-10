@@ -68,23 +68,6 @@ namespace MealPlannerMVC.Controllers
 			return RedirectToAction("Index", "MealIngredient", new { id=newIMModel.MealId} );
 		}
 
-		public IActionResult Edit(int Id)
-		{
-			var model = _ingredientRepository.GetIngredient(Id);			
-			return View(model);
-		}
-		[HttpPost]
-		public IActionResult Edit(MealIngredientViewModel model)
-		{
-			var ingredient = new Ingredient();
-			ingredient.ItemId = model.ItemId;
-			ingredient.Measure = model.Measure;
-			ingredient.Unit = model.Unit;
-
-			_ingredientRepository.Edit(ingredient);
-			return RedirectToAction("Index", "MealIngredient", new { id = model.MealId });
-		}
-
 		[HttpPost]
 		public IActionResult Delete(int mealId, int ingredientId)
 		{

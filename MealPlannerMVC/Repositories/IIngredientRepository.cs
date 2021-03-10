@@ -11,6 +11,5 @@ namespace MealPlannerMVC.Repositories
 		IEnumerable<Ingredient> GetIngredients();
 		Ingredient GetIngredient(int id);
 		int Add(Ingredient item);
-		int Edit(Ingredient item);
 	}
 }

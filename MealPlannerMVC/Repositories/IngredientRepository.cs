@@ -23,15 +23,7 @@ namespace MealPlannerMVC.Repositories
 			return entityAdded.Entity.Id;
 		}
 
-        public int Edit(Ingredient item)
-        {
-			_appDbContext.Update(item);
-			_appDbContext.SaveChanges();
-			var id = item.Id;
-			return id;
-		}
-
-        public Ingredient GetIngredient(int id)
+		public Ingredient GetIngredient(int id)
 		{
 			return _appDbContext.Ingredients.Where(x=>x.Id == id).FirstOrDefault();
 		}
