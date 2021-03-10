@@ -26,7 +26,7 @@
                     </div>
                     <div class="widget-body no-padding">
                         <form id="meal-edit-form" asp-action="edit">
-                            <input asp-for="Id" type="hidden"/>
+                            <input asp-for="Id" />
                             <fieldset>
                                 @await Html.PartialAsync("_FormFields", Model)
                             </fieldset>

@@ -1,6 +1,5 @@
 ﻿using MealPlannerMVC.Models;
 using MealPlannerMVC.Repositories;
-using MealPlannerMVC.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,12 +11,12 @@ namespace MealPlannerMVC.Controllers
 	public class MealController : Controller
 	{
 		private readonly IMealRepository _mealRepository;
-        private readonly IMealService _mealService;
+        private readonly IMealIngredientRepository _mealIngredientRepository;
 
-        public MealController(IMealRepository mealRepository, IMealService mealService)
+        public MealController(IMealRepository mealRepository, IMealIngredientRepository mealIngredientRepository)
 		{
 			_mealRepository = mealRepository;
-			_mealService = mealService;
+            _mealIngredientRepository = mealIngredientRepository;
         }
 		public IActionResult Index()
 		{
@@ -47,7 +46,25 @@ namespace MealPlannerMVC.Controllers
 		}
 		public IActionResult Copy(int id)
 		{
-			_mealService.CopyRecipe(id);
+			var model = _mealRepository.GetMeal(id);
+
+			var newMeal = new Meal()
+			{
+				Name = model.Name,
+				MealType = model.MealType,
+				Who = model.Who == Who.Cathal ? Who.Yasmin : Who.Cathal				
+			};			
+			int newid = _mealRepository.Add(newMeal);
+
+            foreach (var item in model.MealIngredients)
+            {
+				var newIngredient = new MealIngredient()
+				{
+					IngredientId = item.IngredientId,
+					MealId = newid
+				};
+				_mealIngredientRepository.Add(newIngredient);
+            }
 			return RedirectToAction("Index");
 		}
 	}
