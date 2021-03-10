@@ -40,7 +40,7 @@ namespace MealPlannerMVC.Controllers
 		[HttpPost]
 		public IActionResult Index(PlanViewModel model)
 		{
-			var mealPlan = new Dictionary<int, int>();
+			var mealPlan = new Dictionary<int, double>();
 			if (mealPlan.ContainsKey(model.Meal1))
 			{
 				mealPlan[model.Meal1] += model.Meal1B; 
@@ -91,34 +91,30 @@ namespace MealPlannerMVC.Controllers
 				mealPlan.Add(model.Meal6, model.Meal6B);
 			}
 			// have <MealID, Quantity>
-			// want <IngredientID, Quantity>
-
-
-			List<Ingredient> shoppingList = new List<Ingredient>();
+			mealPlan.Remove(0);
+			var ingredientPlan = new Dictionary<int, double>();
 			foreach (var meal in mealPlan)
 			{
+				//get ingredient x quantity and return this dict
 				var thisMeal = _mealIngredientsRepository.GetIngredientsForMeal(meal.Key);
-				foreach (var ingredients in thisMeal)
+				foreach (var ingredient in thisMeal)
 				{
-					var ingredient = _ingredientsRepository.GetIngredient(ingredients.IngredientId);
-					var newMeasure = ingredient.Measure * meal.Value;
-					//if (shoppingList.Contains(ingredient))
-					//if (shoppingList.Any(x => x.ItemId == ingredient.ItemId))
-					//{
-					//	//shoppingList.
-					//	var x = shoppingList.Where(x => x.ItemId == ingredient.ItemId).FirstOrDefault();
-					//	x.Measure += newMeasure;
-					//}
-					//else
-					//{
-						ingredient.Measure = newMeasure;
-						shoppingList.Add(ingredient);
-					ingredient = null;
-					//}
+					if (!ingredientPlan.TryAdd(ingredient.Ingredient.ItemId, Convert.ToDouble(meal.Value*ingredient.Ingredient.Measure)))
+					{
+						ingredientPlan[ingredient.Ingredient.ItemId] += Convert.ToDouble(meal.Value * ingredient.Ingredient.Measure);
+					}
 				}
 			}
-			model.ShoppingList = shoppingList;
-			return View(model);
+			// want <ItemId, Quantity>
+			var shoppingList = new PlanViewModel();
+			foreach (var ingredient in ingredientPlan)
+			{
+				var ingred = _ingredientsRepository.GetIngredient(ingredient.Key);
+				ingred.Measure = ingredient.Value;
+				shoppingList.ShoppingList.Add(ingred);
+			}
+
+			return View(shoppingList);
 		}
 		public IActionResult ShoppingList(List<Ingredient> model)
 		{			

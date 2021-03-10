@@ -8,6 +8,10 @@ namespace MealPlannerMVC.ViewModels
 {
 	public class PlanViewModel
 	{
+		public PlanViewModel()
+		{
+			ShoppingList = new List<Ingredient>();
+		}
 		public int Meal1 { get; set; }
 		public int Meal1B { get; set; }
 		public int Meal2 { get; set; }

@@ -45,7 +45,7 @@ namespace MealPlannerMVC.Services
 			}
 		}
 
-		private int CopyIngredient(int ingredientId)
+		public int CopyIngredient(int ingredientId)
 		{
 			var model = _ingredientRepository.GetIngredient(ingredientId);
 			var newIngredient = new Ingredient()
