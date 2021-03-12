@@ -49,5 +49,12 @@ namespace MealPlannerMVC.Repositories
 			_appDbContext.SaveChanges();
 		}
 
-	}
+  //      public Ingredient GetIngredientFromItemId(int id)
+  //      {
+		//	//return _appDbContext.Ingredients
+		//	//	.Include(x=>x.Item)
+		//	//	.Select(z=>z.ItemId == id)
+		//	//	.FirstOrDefault();
+		//}
+    }
 }

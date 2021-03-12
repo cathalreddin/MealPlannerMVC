@@ -107,11 +107,20 @@ namespace MealPlannerMVC.Controllers
 			}
 			// want <ItemId, Quantity>
 			var shoppingList = new PlanViewModel();
-			foreach (var ingredient in ingredientPlan)
+			foreach (var item in ingredientPlan)
 			{
-				var ingred = _ingredientsRepository.GetIngredient(ingredient.Key);
-				ingred.Measure = ingredient.Value;
-				shoppingList.ShoppingList.Add(ingred);
+				var theItem = _itemRepository.GetItem(item.Key);
+				//var ingredientUnit = _itemRepository.GetIngredient(theItem.)
+				var i = new Ingredient()
+				{
+					ItemId = theItem.Id,
+					Item = theItem,
+					Measure = item.Value,
+					//NEED TO GET THE UNIT VALUE**************
+					Unit = "x"					
+				};
+				//ingred.Measure = ingredient.Value;
+				shoppingList.ShoppingList.Add(i);
 			}
 
 			return View(shoppingList);
