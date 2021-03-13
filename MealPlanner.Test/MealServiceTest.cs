@@ -24,7 +24,7 @@ namespace MealPlanner.Test
 		{
 			//Arrange
 			
-			var fakeIngredient = new Ingredient { Id = 1, ItemId = 1, Measure = 1, Unit = "grams" };
+			var fakeIngredient = new Ingredient { Id = 1, ItemId = 1, Measure = 1 };
 
 			var sut = new MealService(mockMealRepository.Object, mockIngredientRepository.Object,
 				mockMealIngredientRepository.Object);

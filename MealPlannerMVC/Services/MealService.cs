@@ -51,7 +51,7 @@ namespace MealPlannerMVC.Services
 			var newIngredient = new Ingredient()
 			{
 				ItemId = model.ItemId,
-				Unit = model.Unit,
+				//Unit = model.Unit,
 				Measure = null
 			};
 
