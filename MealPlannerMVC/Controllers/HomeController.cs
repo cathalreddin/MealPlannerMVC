@@ -264,7 +264,7 @@ namespace MealPlannerMVC.Controllers
 					Item = theItem,
 					Measure = item.Value,
 					//NEED TO GET THE UNIT VALUE**************
-					Unit = "x"					
+					Unit = theItem.Unit					
 				};
 				//ingred.Measure = ingredient.Value;
 				shoppingList.ShoppingList.Add(i);

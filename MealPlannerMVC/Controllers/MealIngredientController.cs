@@ -31,7 +31,7 @@ namespace MealPlannerMVC.Controllers
 				temp.Id = item.Ingredient.Id;
 				temp.ItemName = item.Ingredient.Item.Name;
 				temp.Measure = item.Ingredient.Measure;
-				temp.Unit = item.Ingredient.Unit;
+				temp.Unit = item.Ingredient.Item.Unit;
 				temp.MealId = id;
 				newModel.Add(temp);
 			}
@@ -56,7 +56,7 @@ namespace MealPlannerMVC.Controllers
 			var newModel = new Ingredient();
 			newModel.ItemId = model.ItemId;
 			newModel.Measure = model.Measure;
-			newModel.Unit = model.Unit;
+			//newModel.Unit = model.Unit;
 			
 			var newId = _ingredientRepository.Add(newModel);
 			var newIMModel = new MealIngredient();
@@ -79,7 +79,7 @@ namespace MealPlannerMVC.Controllers
 			var ingredient = new Ingredient();
 			ingredient.ItemId = model.ItemId;
 			ingredient.Measure = model.Measure;
-			ingredient.Unit = model.Unit;
+			//ingredient.Unit = model.Unit;
 
 			_ingredientRepository.Edit(ingredient);
 			return RedirectToAction("Index", "MealIngredient", new { id = model.MealId });

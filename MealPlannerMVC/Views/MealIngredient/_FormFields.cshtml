@@ -7,21 +7,16 @@
 			<select class="form-control" asp-for="ItemId" asp-items="SelectListHelper.ListItems()">
 				<option value="0">Select</option>
 			</select>
-			@*<select class="form-control" asp-for="Item.Id">
-					<option value="0">Select</option>
-					<option value="1">One</option>
-					<option value="2">Two</option>
-				</select>*@
 		</label>
 		<span asp-validation-for="ItemId"></span>
 	</div>
-	<div class="col col-6">
+	@*<div class="col col-6">
 		<label class="label">Unit</label>
 		<label class="input">
 			<input asp-for="Unit" placeholder="Unit" />
 		</label>
 		<span asp-validation-for="Unit"></span>
-	</div>
+	</div>*@
 	<div class="col col-6">
 		<label class="label">Measure</label>
 		<label class="input">
